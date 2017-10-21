@@ -21,8 +21,8 @@ public class SingleMotorL extends Subsystem {
     	setDefaultCommand(new SingleMotorLeft());
     }
     public void open(Joystick joy) {
-    	motor1.set(joy.getY());
-    	motor2.set(joy.getY());
+    	motor1.set(-joy.getY());
+    	motor2.set(-joy.getY());
     } 
     public void finish() {
     	motor1.set(0);
