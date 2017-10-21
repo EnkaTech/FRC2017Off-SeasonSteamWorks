@@ -22,7 +22,7 @@ public class OI {
 		
 	public OI() 
 	{
-		JoystickButton d_up = new JoystickButton(joy, 1)
+		JoystickButton d_up = new JoystickButton(joy, 1);
 		d_up.whileHeld(new SingleMotorBabe());
 	}
 
