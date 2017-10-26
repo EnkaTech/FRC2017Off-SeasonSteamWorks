@@ -1,6 +1,10 @@
 
 package org.usfirst.frc.team6985.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,9 +12,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
-import org.usfirst.frc.team6985.robot.subsystems.SingleMotor;
-import org.usfirst.frc.team6985.robot.subsystems.SingleMotorL;
+import org.usfirst.frc.team6985.robot.subsystems.RaiseLowerPanel;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +29,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveSystem driveSystem;
-	public static SingleMotor singleMotor;
-	public static SingleMotorL singleMotorL;
+	public static RaiseLowerPanel rlPanel;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -35,10 +40,25 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		singleMotor = new SingleMotor();
-		singleMotorL = new SingleMotorL();
 		oi = new OI();
 		driveSystem = new DriveSystem();
+		rlPanel = new RaiseLowerPanel();
+		new Thread(() -> {
+            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+            camera.setResolution(640, 480);
+            
+            CvSink cvSink = CameraServer.getInstance().getVideo();
+            CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+            
+            Mat source = new Mat();
+            Mat output = new Mat();
+            
+            while(!Thread.interrupted()) {
+                cvSink.grabFrame(source);
+                Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+                outputStream.putFrame(output);
+            }
+        }).start();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}

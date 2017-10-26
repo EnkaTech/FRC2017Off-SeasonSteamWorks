@@ -3,7 +3,6 @@ package org.usfirst.frc.team6985.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team6985.robot.commands.SingleMotorBabe;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,7 +22,6 @@ public class OI {
 	public OI() 
 	{
 		JoystickButton d_up = new JoystickButton(joy, 1);
-		d_up.whileHeld(new SingleMotorBabe());
 	}
 
 	/* There are a few additional built in buttons you can use. Additionally,

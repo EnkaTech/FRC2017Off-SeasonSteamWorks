@@ -20,7 +20,7 @@ public class DriveSystem extends Subsystem {
 	private SpeedController rearLeftMotor = new Victor(2);
 	private SpeedController frontRightMotor = new Victor(3);
 	private SpeedController rearRightMotor = new Victor(4);
-	private RobotDrive driveSystem=new RobotDrive(frontLeftMotor,rearLeftMotor,frontRightMotor,rearRightMotor);
+	private RobotDrive driveSystem = new RobotDrive(frontLeftMotor,rearLeftMotor,frontRightMotor,rearRightMotor);
 	@Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -28,10 +28,10 @@ public class DriveSystem extends Subsystem {
 		setDefaultCommand(new JoystickDrive());
     }
 	public void drive(double x,double y) {
-	driveSystem.tankDrive(x, y);
+	driveSystem.tankDrive(x,y);//(x, y);
 }
 	public void drive(Joystick joy) {
-	drive(-joy.getY(),-joy.getX());
+	drive(-joy.getY()*0.4,-joy.getRawAxis(5)*0.4);
 }
 }
 
