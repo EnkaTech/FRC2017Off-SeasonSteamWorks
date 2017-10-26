@@ -12,6 +12,7 @@ public class Panel extends Command {
     public Panel() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.rlPanel);
     }
 
     // Called just before this Command runs the first time

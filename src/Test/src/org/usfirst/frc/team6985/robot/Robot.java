@@ -26,7 +26,6 @@ import org.usfirst.frc.team6985.robot.subsystems.RaiseLowerPanel;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static RaiseLowerPanel rlPanel;
