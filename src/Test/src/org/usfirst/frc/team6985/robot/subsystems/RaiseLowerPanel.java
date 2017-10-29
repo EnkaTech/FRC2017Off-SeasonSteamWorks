@@ -18,7 +18,7 @@ public class RaiseLowerPanel extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private SpeedController lifterMotor = new Victor(5);
+	private SpeedController lifterMotor = new Victor(4);
 	
     public void initDefaultCommand() {
     	setDefaultCommand(new Panel());

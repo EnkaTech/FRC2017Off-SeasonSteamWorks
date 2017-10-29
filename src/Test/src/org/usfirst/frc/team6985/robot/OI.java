@@ -1,5 +1,7 @@
 package org.usfirst.frc.team6985.robot;
 
+import org.usfirst.frc.team6985.robot.commands.Gear;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,8 +24,10 @@ public class OI {
 	public OI() 
 	{
 		JoystickButton d_up = new JoystickButton(joy, 1);
+		JoystickButton d_right = new JoystickButton(joy, 2);
+		d_up.whileHeld(new Gear(0.5));
+		d_right.whileHeld(new Gear(-0.5));
 	}
-
 	/* There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -39,7 +43,7 @@ public class OI {
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
 	// button.whileHeld(new ExampleCommand());
-
+	
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());

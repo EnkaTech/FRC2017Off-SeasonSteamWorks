@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
+import org.usfirst.frc.team6985.robot.subsystems.GearCollector;
 import org.usfirst.frc.team6985.robot.subsystems.RaiseLowerPanel;
 
 
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static RaiseLowerPanel rlPanel;
+	public static GearCollector gearCollector;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -42,6 +44,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		driveSystem = new DriveSystem();
 		rlPanel = new RaiseLowerPanel();
+		gearCollector = new GearCollector();
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(640, 480);
