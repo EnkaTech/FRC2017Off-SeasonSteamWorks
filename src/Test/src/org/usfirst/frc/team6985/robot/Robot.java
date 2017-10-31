@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team6985.robot.subsystems.Climber;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team6985.robot.subsystems.GearCollector;
 import org.usfirst.frc.team6985.robot.subsystems.RaiseLowerPanel;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static DriveSystem driveSystem;
 	public static RaiseLowerPanel rlPanel;
 	public static GearCollector gearCollector;
+	public static Climber climber;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -41,6 +43,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		climber = new Climber();
 		gearCollector = new GearCollector();
 		oi = new OI();
 		driveSystem = new DriveSystem();

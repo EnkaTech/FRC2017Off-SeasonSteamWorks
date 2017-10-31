@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6985.robot;
 
+import org.usfirst.frc.team6985.robot.commands.Climb;
 import org.usfirst.frc.team6985.robot.commands.Gear;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,10 +24,12 @@ public class OI {
 		
 	public OI() 
 	{
-		JoystickButton d_up = new JoystickButton(joy, 1);
-		JoystickButton d_right = new JoystickButton(joy, 2);
-		d_up.whileHeld(new Gear(0.5));
-		d_right.whileHeld(new Gear(-0.5));
+		JoystickButton circle = new JoystickButton(joy, 1);
+		JoystickButton cross = new JoystickButton(joy, 2);
+		JoystickButton square = new JoystickButton(joy, 3);
+		circle.whileHeld(new Gear(0.5));
+		cross.whileHeld(new Gear(-0.5));
+		square.whileHeld(new Climb(0.5));
 	}
 	/* There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
