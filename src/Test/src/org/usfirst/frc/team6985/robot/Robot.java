@@ -41,10 +41,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		gearCollector = new GearCollector();
 		oi = new OI();
 		driveSystem = new DriveSystem();
 		rlPanel = new RaiseLowerPanel();
-		gearCollector = new GearCollector();
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(640, 480);
