@@ -18,16 +18,16 @@ public class OI {
 	// Joystick stick = new Joystick(port);
 	*/
 	
-	Joystick joy = new Joystick(0);	
-		
+	public Joystick joy = new Joystick(0);	
 	public OI() 
 	{
-		JoystickButton circle = new JoystickButton(joy, 1);
-		JoystickButton cross = new JoystickButton(joy, 2);
-		JoystickButton square = new JoystickButton(joy, 3);
-		circle.whileHeld(new Gear(0.5));
-		cross.whileHeld(new Gear(-0.5));
-		square.whileHeld(new Climb(0.5));
+		
+		JoystickButton buttonB = new JoystickButton(joy, 1);
+		JoystickButton buttonA = new JoystickButton(joy, 2);
+		JoystickButton buttonX = new JoystickButton(joy, 3);
+		buttonB.whileHeld(new Gear(0.5));
+		buttonA.whileHeld(new Gear(-0.5));
+		buttonX.whileHeld(new Climb(0.5));
 	}
 	/* There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to

@@ -1,11 +1,16 @@
 package org.usfirst.frc.team6985.robot.commands;
 
 import org.usfirst.frc.team6985.robot.Robot;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 
 public class JoystickDrive extends Command {
-
+	Joystick joy = Robot.oi.joy;
+	public JoystickButton powerup = new JoystickButton(joy, 6);
+	double a;
     public JoystickDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -19,7 +24,13 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSystem.drive(Robot.oi.getJoystick());
+    	if(powerup.get()) {
+    		this.a=1.5;
+    	}
+    	else {
+    		this.a=0.75;
+    	}
+    	Robot.driveSystem.drive(-joy.getY()*a,-joy.getRawAxis(5)*a);
     }
 
     // Make this return true when this Command no longer needs to run execute()
