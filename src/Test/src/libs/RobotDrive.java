@@ -37,7 +37,6 @@ public class RobotDrive implements MotorSafety {
   public enum MotorType {
     kFrontLeft(0), kFrontRight(1), kRearLeft(2), kRearRight(3);
 
-    @SuppressWarnings("MemberName")
     public final int value;
 
     private MotorType(int value) {
@@ -461,16 +460,13 @@ public class RobotDrive implements MotorSafety {
    * @param gyroAngle The current angle reading from the gyro. Use this to implement field-oriented
    *                  controls.
    */
-  @SuppressWarnings("ParameterName")
   public void mecanumDrive_Cartesian(double x, double y, double rotation, double gyroAngle) {
     if (!kMecanumCartesian_Reported) {
       HAL.report(tResourceType.kResourceType_RobotDrive, getNumMotors(),
           tInstances.kRobotDrive_MecanumCartesian);
       kMecanumCartesian_Reported = true;
     }
-    @SuppressWarnings("LocalVariableName")
     double xIn = x;
-    @SuppressWarnings("LocalVariableName")
     double yIn = y;
     // Negate y for the joystick.
     yIn = -yIn;
@@ -617,7 +613,6 @@ public class RobotDrive implements MotorSafety {
   /**
    * Rotate a vector in Cartesian space.
    */
-  @SuppressWarnings("ParameterName")
   protected static double[] rotateVector(double x, double y, double angle) {
     double cosA = Math.cos(angle * (3.14159 / 180.0));
     double sinA = Math.sin(angle * (3.14159 / 180.0));

@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import libs.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -28,7 +27,7 @@ public class DriveSystem extends Subsystem {
 		setDefaultCommand(new JoystickDrive());
     }
 	public void drive(double x,double y) {
-	driveSystem.tankDrive(x,y);//(x, y);
+	driveSystem.tankDrive(x,y);
 }
 	public void drive(Joystick joy) {
 	drive(-joy.getY()*0.4,-joy.getRawAxis(5)*0.4);

@@ -2,9 +2,7 @@ package org.usfirst.frc.team6985.robot;
 
 import org.usfirst.frc.team6985.robot.commands.Climb;
 import org.usfirst.frc.team6985.robot.commands.Gear;
-
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**

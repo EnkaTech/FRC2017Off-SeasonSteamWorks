@@ -1,8 +1,6 @@
 package org.usfirst.frc.team6985.robot.commands;
 
 import org.usfirst.frc.team6985.robot.Robot;
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 
