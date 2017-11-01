@@ -11,8 +11,8 @@ public class Climber extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	SpeedController motor1 = new Victor(6);
-	SpeedController motor2 = new Victor(7);
+	SpeedController motor1 = new Victor(7);
+	SpeedController motor2 = new Victor(8);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -20,7 +20,7 @@ public class Climber extends Subsystem {
     }
     public void climb(double x) {
     	motor1.set(x);
-    	motor2.set(x);
+    	motor2.set(-x);
     }
 }
 

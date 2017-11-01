@@ -16,10 +16,10 @@ public class DriveSystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private SpeedController frontLeftMotor = new Victor(0);
-	private SpeedController rearLeftMotor = new Victor(1);
-	private SpeedController frontRightMotor = new Victor(2);
-	private SpeedController rearRightMotor = new Victor(3);
+	private SpeedController frontLeftMotor = new Victor(1);
+	private SpeedController rearLeftMotor = new Victor(2);
+	private SpeedController frontRightMotor = new Victor(3);
+	private SpeedController rearRightMotor = new Victor(4);
 	private RobotDrive driveSystem = new RobotDrive(frontLeftMotor,rearLeftMotor,frontRightMotor,rearRightMotor);
 	@Override
     public void initDefaultCommand() {
