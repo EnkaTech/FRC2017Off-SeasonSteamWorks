@@ -27,7 +27,7 @@ public class OI {
 		JoystickButton buttonX = new JoystickButton(joy, 3);
 		buttonB.whileHeld(new Gear(0.5));
 		buttonA.whileHeld(new Gear(-0.5));
-		buttonX.whileHeld(new Climb(0.5));
+		buttonX.whileHeld(new Climb(-0.5));
 	}
 	/* There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
