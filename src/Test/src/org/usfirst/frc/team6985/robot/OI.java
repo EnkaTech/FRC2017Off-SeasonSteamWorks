@@ -21,12 +21,11 @@ public class OI {
 	public Joystick joy = new Joystick(0);	
 	public OI() 
 	{
-		
-		JoystickButton buttonB = new JoystickButton(joy, 1);
-		JoystickButton buttonA = new JoystickButton(joy, 2);
+		JoystickButton buttonB = new JoystickButton(joy, 2);
+		JoystickButton buttonA = new JoystickButton(joy, 1);
 		JoystickButton buttonX = new JoystickButton(joy, 3);
-		buttonB.whileHeld(new Gear(0.5));
-		buttonA.whileHeld(new Gear(-0.5));
+		buttonB.whileHeld(new Gear(1));
+		buttonA.whileHeld(new Gear(-1));
 		buttonX.whileHeld(new Climb(-0.5));
 	}
 	/* There are a few additional built in buttons you can use. Additionally,
