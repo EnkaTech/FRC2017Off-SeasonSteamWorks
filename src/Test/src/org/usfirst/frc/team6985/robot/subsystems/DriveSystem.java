@@ -25,8 +25,6 @@ public class DriveSystem extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new JoystickDrive());
-		 
-		
     }
 	public void drive(double x,double y) {
 	driveSystem.tankDrive(x,y);
