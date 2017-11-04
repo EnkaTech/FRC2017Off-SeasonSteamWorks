@@ -11,19 +11,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	SpeedController motor1 = new Victor(5);
-	SpeedController motor2 = new Victor(6);
+    //Týrmanma motorlarýnýn tanýmlanmasý
+	SpeedController climbMotor1 = new Victor(5);
+	SpeedController climbMotor2 = new Victor(6);
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	//Alt sistem için ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
     	setDefaultCommand(new Climb(0));
     }
     public void climb(double x) {
-    	motor1.set(x);
-    	motor2.set(x);
+    	//Týrmanma motorlarýnýn çalýþtýrlmasý.
+    	climbMotor1.set(x);
+    	climbMotor2.set(x);
     }
 }
 

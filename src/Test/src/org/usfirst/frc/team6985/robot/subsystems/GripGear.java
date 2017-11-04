@@ -10,18 +10,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class GearCollector extends Subsystem {
+public class GripGear extends Subsystem {
+	
+	//Gripperý sýkýþtýran motorlarýn tanýmlanmasý.
 	private SpeedController motor = new Victor(7);
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	//Alt sistem için ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
     	setDefaultCommand(new Gear(0));
     }
-    public void roll(double x) {
+    //Gripper ýn çalýþtýrýlmasý.
+    public void grip(double x) {
     	motor.set(x);
     }
 }

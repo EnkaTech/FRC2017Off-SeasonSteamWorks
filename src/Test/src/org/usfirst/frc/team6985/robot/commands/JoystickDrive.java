@@ -1,29 +1,27 @@
 package org.usfirst.frc.team6985.robot.commands;
 
-import org.usfirst.frc.team6985.robot.OI;
 import org.usfirst.frc.team6985.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
-
+//Sürme komutlarý.
 public class JoystickDrive extends Command {
 	Joystick joy = Robot.oi.joy;
 	double a;
     public JoystickDrive() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	
+        //Komuta gereken altsistemlerin çaðýrýlmasý.
     	requires(Robot.driveSystem);
     }
 
-    // Called just before this Command runs the first time
+    //Komut ilk kez çalýþmaya baþladýðýnda çaðrýlan kod
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    //Komut çalýþýrken devamlý olarak çaðrýlan kod.
     protected void execute() {
+    	
+    	//Robotun hýzýný ve hassasiyet ayarýný veren kod.
     	if(Robot.oi.increaseSensitivity.get()){
     		this.a=0.45;
     	}
@@ -37,18 +35,18 @@ public class JoystickDrive extends Command {
     	Robot.driveSystem.drive(-joy.getY()*a,-joy.getRawAxis(5)*a);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    //Bunun doðru çýktý vermesi komutu durdurur.
     protected boolean isFinished() {
         return false;
     }
 
-    // Called once after isFinished returns true
+    //isFinished doðru deðer aldýktan sonra bir kere çalýþtýrýlýr.
+    //TODO isFinished kullanýlabileceði için alttaki kod mevcut.
     protected void end() {
     	Robot.driveSystem.drive(0,0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    //Bu komutun gerektirdiði bir alt sistemi gerektiren baþka bir komut çaðrýldýðýnda kullanýlan kod.
     protected void interrupted() {
     }
 }

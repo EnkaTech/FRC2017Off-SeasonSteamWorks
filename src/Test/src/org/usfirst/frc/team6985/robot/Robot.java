@@ -16,38 +16,34 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team6985.robot.subsystems.Climber;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
-import org.usfirst.frc.team6985.robot.subsystems.GearCollector;
-import org.usfirst.frc.team6985.robot.subsystems.RaiseLowerPanel;
+import org.usfirst.frc.team6985.robot.subsystems.GripGear;
+import org.usfirst.frc.team6985.robot.subsystems.MoveGripper;
 
-
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
+	
+	//Komutlarýn tanýmlanmasý
 	public static OI oi;
 	public static DriveSystem driveSystem;
-	public static RaiseLowerPanel rlPanel;
-	public static GearCollector gearCollector;
+	public static MoveGripper moveGripper;
+	public static GripGear gripGear;
 	public static Climber climber;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
+	//Robot baþladýðýnda çalýþacak kod
 	@Override
 	public void robotInit() {
+		
+		//Komutlarýn iþlevselleþtirilmesi 
+		//TODO Kontrol edilecek.
 		climber = new Climber();
-		gearCollector = new GearCollector();
+		gripGear = new GripGear();
 		oi = new OI();
 		driveSystem = new DriveSystem();
-		rlPanel = new RaiseLowerPanel();
+		moveGripper = new MoveGripper();
+		
+		//FIRST'ün hazýr kamera çýktý alma kodu. Düzenlenmedi.
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(640, 480);
@@ -64,15 +60,10 @@ public class Robot extends IterativeRobot {
                 outputStream.putFrame(output);
             }
         }).start();
-		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
+	//Robotun komutlarý durdurmadan çalýþtýrdýpý son kod
 	@Override
 	public void disabledInit() {
 
@@ -82,7 +73,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
+	//DOKUNMAYIN. OTONOM ÇAILIÞILMADI.
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -97,7 +88,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
+		//DOKUNMAYIN. OTONOM ÇALIÞILMADI.
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -110,35 +101,27 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 	}
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
+	//Bu fonksiyon otonom sýrasýnda periyodik olarak çalýþýr. Modem baðlantýsýna göre yaklaþýk 20 ms'te bir çalýþýr. (Koddan gözlendi.)
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
+	
+	//Teleoperatör baþlatýldýðnda baþlayacak olan kod.
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		//FIRST'ün gömdüðü komut teleoperatör baþlarken otonomun durmasýný saðlýyor. (Deðiþtirilebilir.)
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
 
-	/**
-	 * This function is called periodically during operator control
-	 */
+	//Teleoperatör sýrasýnda periyodik bir þekilde tekrar eden kod.
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	/**
-	 * This function is called periodically during test mode
-	 */
+	//Test modu sýrasýnda periyodik bir þekilde tekrar eden kod.
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
