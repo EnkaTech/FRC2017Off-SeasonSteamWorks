@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6985.robot.commands;
 
+import org.usfirst.frc.team6985.robot.OI;
 import org.usfirst.frc.team6985.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,10 +24,10 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.getSensitivity()){
+    	if(Robot.oi.increaseSensitivity.get()){
     		this.a=0.45;
     	}
-    	else if(Robot.oi.getPower()) {
+    	else if(Robot.oi.powerup.get()) {
     		this.a=1.5;
     	}
     	else {
