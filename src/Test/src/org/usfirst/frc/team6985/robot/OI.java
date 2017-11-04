@@ -17,16 +17,21 @@ public class OI {
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	*/
-	
+	boolean powerup;
+	boolean sensitivity;
 	public Joystick joy = new Joystick(0);	
 	public OI() 
 	{
-		JoystickButton buttonB = new JoystickButton(joy, 2);
 		JoystickButton buttonA = new JoystickButton(joy, 1);
+		JoystickButton buttonB = new JoystickButton(joy, 2);
 		JoystickButton buttonX = new JoystickButton(joy, 3);
+		JoystickButton powerup = new JoystickButton(joy, 6);
+		JoystickButton increaseSensitivity = new JoystickButton(joy, 5);
 		buttonB.whileHeld(new Gear(1));
 		buttonA.whileHeld(new Gear(-1));
 		buttonX.whileHeld(new Climb(-0.5));
+		this.powerup=powerup.get();
+		this.sensitivity=increaseSensitivity.get();
 	}
 	/* There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
@@ -52,6 +57,12 @@ public class OI {
 	public Joystick getJoystick()
 	{
 		return joy;
+	}
+	public boolean getPower() {
+		return powerup;
+	}
+	public boolean getSensitivity() {
+		return sensitivity;
 	}
 }
 

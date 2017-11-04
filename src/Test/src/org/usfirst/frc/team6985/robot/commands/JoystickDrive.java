@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickDrive extends Command {
 	Joystick joy = Robot.oi.joy;
-	public JoystickButton powerup = new JoystickButton(joy, 6);
-	public JoystickButton increaseSensitivity = new JoystickButton(joy, 5);
 	double a;
     public JoystickDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -25,11 +23,11 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(powerup.get()) {
-    		this.a=1.5;
-    	}
-    	else if(increaseSensitivity.get()){
+    	if(Robot.oi.getSensitivity()){
     		this.a=0.45;
+    	}
+    	else if(Robot.oi.getPower()) {
+    		this.a=1.5;
     	}
     	else {
     		this.a=0.75;
