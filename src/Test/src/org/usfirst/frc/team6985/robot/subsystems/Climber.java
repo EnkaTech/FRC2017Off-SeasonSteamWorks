@@ -11,16 +11,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 
-    //Tırmanma motorlarının tanımlanması
+    //TÄ±rmanma motorlarÄ±nÄ±n tanÄ±mlanmasÄ±
 	SpeedController climbMotor1 = new Victor(5);
 	SpeedController climbMotor2 = new Victor(6);
 
     public void initDefaultCommand() {
-    	//Alt sistem için ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
+    	//Alt sistem iÃ§in ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
     	setDefaultCommand(new Climb(0));
     }
     public void climb(double x) {
-    	//Tırmanma motorlarının çalıştırlması.
+    	//TÄ±rmanma motorlarÄ±nÄ±n Ã§alÄ±ÅŸtÄ±rlmasÄ±.
     	climbMotor1.set(x);
     	climbMotor2.set(x);
     }

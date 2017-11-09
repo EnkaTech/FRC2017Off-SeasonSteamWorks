@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 
-	//Joystick ve butonlarýn tanýmlanmasý
+	//Joystick ve butonlarÄ±n tanÄ±mlanmasÄ±.
 	public Joystick joy = new Joystick(0);
 	public JoystickButton buttonA = new JoystickButton(joy, 1);
 	public JoystickButton buttonB = new JoystickButton(joy, 2);
@@ -16,12 +16,10 @@ public class OI {
 	public JoystickButton increaseSensitivity = new JoystickButton(joy, 5);
 	public OI() 
 	{
-		//Butonlara basýlmasýna göre fonkisyon çalýþtýrlmasý
+		//Butonlara basÄ±lmasÄ±na gÃ¶re fonkisyon Ã§alÄ±ÅŸtÄ±rÄ±lmasÄ±.
 		buttonB.whileHeld(new Gear(1));
 		buttonA.whileHeld(new Gear(-1));
 		buttonX.whileHeld(new Climb(-0.5));
-
 	}
 
 }
-

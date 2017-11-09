@@ -5,23 +5,23 @@ import org.usfirst.frc.team6985.robot.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-//Sürme komutları.
+//SÃ¼rme komutlarÄ±.
 public class JoystickDrive extends Command {
 	Joystick joy = Robot.oi.joy;
 	double a;
     public JoystickDrive() {
-        //Komuta gereken altsistemlerin çağırılması.
+        //Komuta gereken altsistemlerin Ã§alÄ±ÅŸtÄ±rÄ±lmasÄ±.
     	requires(Robot.driveSystem);
     }
 
-    //Komut ilk kez çalışmaya başladığında çağrılan kod
+    //Komut ilk kez Ã§alÄ±ÅŸmaya baÅŸladÄ±ÄŸÄ±nda yÃ¼rÃ¼tÃ¼len kod.
     protected void initialize() {
     }
 
-    //Komut çalışırken devamlı olarak çağrılan kod.
+    //Komut Ã§alÄ±ÅŸÄ±rken devamlÄ± olarak tekrarlanan kod.
     protected void execute() {
     	
-    	//Robotun hızını ve hassasiyet ayarını veren kod.
+    	//Robotun hÄ±z ve hassasiyet ayarÄ±nÄ± veren kod.
     	if(Robot.oi.increaseSensitivity.get()){
     		this.a=0.45;
     	}
@@ -35,18 +35,18 @@ public class JoystickDrive extends Command {
     	Robot.driveSystem.drive(-joy.getY()*a,-joy.getRawAxis(5)*a);
     }
 
-    //Bunun doğru çıktı vermesi komutu durdurur.
+    //Bunun doÄŸru Ã§Ä±ktÄ± vermesi komutu durdurur.
     protected boolean isFinished() {
         return false;
     }
 
-    //isFinished doğru değer aldıktan sonra bir kere çalıştırılır.
-    //TODO isFinished kullanılabileceği için alttaki kod mevcut.
+    //isFinished doÄŸru deÄŸer aldÄ±ktan sonra bir kere Ã§alÄ±ÅŸtÄ±rÄ±lÄ±r.
+    //TODO isFinished kullanÄ±labileceÄŸi iÃ§in alttaki kod mevcut.
     protected void end() {
     	Robot.driveSystem.drive(0,0);
     }
 
-    //Bu komutun gerektirdiği bir alt sistemi gerektiren başka bir komut çağrıldığında kullanılan kod.
+    //Bu komutun gerektirdiÄŸi bir alt sistemi gerektiren baÅŸka bir komut Ã§alÄ±ÅŸtÄ±rÄ±ldÄ±ÄŸÄ±nda kullanÄ±lan kod.
     protected void interrupted() {
     }
 }

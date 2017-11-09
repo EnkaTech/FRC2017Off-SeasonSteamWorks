@@ -21,7 +21,7 @@ import org.usfirst.frc.team6985.robot.subsystems.MoveGripper;
 
 public class Robot extends IterativeRobot {
 	
-	//Komutlarýn tanýmlanmasý
+	//KomutlarÄ±n tanÄ±mlanmasÄ±
 	public static OI oi;
 	public static DriveSystem driveSystem;
 	public static MoveGripper moveGripper;
@@ -31,11 +31,11 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	//Robot baþladýðýnda çalýþacak kod
+	//Robot baÅŸladÄ±ÄŸÄ±nda Ã§alÄ±ÅŸacak kod
 	@Override
 	public void robotInit() {
 		
-		//Komutlarýn iþlevselleþtirilmesi 
+		//KomutlarÄ±n iÅŸlevselleÅŸtirilmesi. 
 		//TODO Kontrol edilecek.
 		climber = new Climber();
 		gripGear = new GripGear();
@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 		driveSystem = new DriveSystem();
 		moveGripper = new MoveGripper();
 		
-		//FIRST'ün hazýr kamera çýktý alma kodu. Düzenlenmedi.
+		//FIRST'Ã¼n hazÄ±r kamera Ã§Ä±ktÄ± alma kodu. DÃ¼zenlenmedi.
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
             camera.setResolution(640, 480);
@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
-	//Robotun komutlarý durdurmadan çalýþtýrdýpý son kod
+	//Robotun komutlarÄ± durdurmadan Ã§alÄ±ÅŸtÄ±rdÄ±ÄŸÄ± son kod
 	@Override
 	public void disabledInit() {
 
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-	//DOKUNMAYIN. OTONOM ÇAILIÞILMADI.
+	//DOKUNMAYIN. OTONOM ï¿½AILIï¿½ILMADI.
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-		//DOKUNMAYIN. OTONOM ÇALIÞILMADI.
+		//DOKUNMAYIN. OTONOM Ã‡ALIÅžILMADI.
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -101,27 +101,27 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 	}
 
-	//Bu fonksiyon otonom sýrasýnda periyodik olarak çalýþýr. Modem baðlantýsýna göre yaklaþýk 20 ms'te bir çalýþýr. (Koddan gözlendi.)
+	//Bu fonksiyon otonom sÄ±rasÄ±nda periyodik olarak Ã§alÄ±ÅŸÄ±r. Modem baÄŸlantÄ±sÄ±na gÃ¶re yaklaÅŸÄ±k 20 ms'te bir Ã§alÄ±ÅŸÄ±r. (Koddan gÃ¶zlendi.)
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 	
-	//Teleoperatör baþlatýldýðnda baþlayacak olan kod.
+	//TeleoperatÃ¶r baÅŸlatÄ±ldÄ±ÄŸÄ±nda baÅŸlayacak olan kod.
 	@Override
 	public void teleopInit() {
-		//FIRST'ün gömdüðü komut teleoperatör baþlarken otonomun durmasýný saðlýyor. (Deðiþtirilebilir.)
+		//FIRST'Ã¼n gÃ¶mdÃ¼ÄŸÃ¼ komut teleoperatÃ¶r baÅŸlarken otonomun durmasÄ±nÄ± saÄŸlÄ±yor. (DeÄŸiÅŸtirilebilir.)
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
 
-	//Teleoperatör sýrasýnda periyodik bir þekilde tekrar eden kod.
+	//TeleoperatÃ¶r sÄ±rasÄ±nda periyodik bir ÅŸekilde tekrar eden kod.
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	//Test modu sýrasýnda periyodik bir þekilde tekrar eden kod.
+	//Test modu sÄ±rasÄ±nda periyodik bir ÅŸekilde tekrar eden kod.
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();

@@ -5,10 +5,10 @@ import org.usfirst.frc.team6985.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- YALNIZCA JOYSTICK DRIVE ÝÇÝNDE FONKSÝYONLARIN AYRINTILI ANLATIMLARI VARDIR.
+YALNIZCA JOYSTICK DRIVE BÃ–LÃœMÃœNDE FONKSÄ°YONLARIN AYRINTILI ANLATIMLARI VARDIR.
  */
 
-//Gripperý sýkýþtýran komut.
+//GripperÄ± sÄ±kÄ±ÅŸtÄ±ran komut.
 public class Gear extends Command {
 double speed;
     public Gear(double x) {

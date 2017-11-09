@@ -10,20 +10,20 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class MoveGripper extends Subsystem {
 
-    //Gripperı kaldırıp indiren motorun tanımlanması.
+    //GripperÄ± kaldÄ±rÄ±p indiren motorun tanÄ±mlanmasÄ±.
 	private SpeedController lifterMotor = new Spark(8);
 	
     public void initDefaultCommand() {
-    	//Alt sistem için ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
+    	//Alt sistem iÃ§in ana komutun belirlenmesi. Alt sistemler birden fazla komuuta olabilse de bir ana komut olmak zorunda.
     	setDefaultCommand(new LiftGripper());
     }
     public void lift(double l, double r) {
-    	//Motor sürücülerin joystick çıktılarına göre hareket ettirilmesi.
+    	//Motor sÃ¼rÃ¼cÃ¼lerin joystick Ã§Ä±ktÄ±larÄ±n gÃ¶re hareket ettirilmesi.
     	lifterMotor.set((l+r));
     }
     
 	public void lift(Joystick joy){
-		//Joystick çıktılarına göre gripperın yükselip alçaltılması.
+		//Joystick Ã§Ä±ktÄ±larÄ±na gÃ¶re gripperÄ±n yÃ¼kselip alÃ§altÄ±lmasÄ±.
 		lift(-joy.getRawAxis(2),joy.getRawAxis(3));
 	}
 }
