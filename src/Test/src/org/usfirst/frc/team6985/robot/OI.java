@@ -4,6 +4,7 @@ import org.usfirst.frc.team6985.robot.commands.Climb;
 import org.usfirst.frc.team6985.robot.commands.Gear;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class OI {
 
@@ -14,6 +15,7 @@ public class OI {
 	public JoystickButton buttonX = new JoystickButton(joy, 3);
 	public JoystickButton powerup = new JoystickButton(joy, 6);
 	public JoystickButton increaseSensitivity = new JoystickButton(joy, 5);
+	public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	public OI() 
 	{
 		//Butonlara basılmasına göre fonkisyon çalıştırılması.

@@ -4,11 +4,14 @@ import org.usfirst.frc.team6985.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 //Sürme komutları.
 public class JoystickDrive extends Command {
 	Joystick joy = Robot.oi.joy;
 	double a;
+	public Gyro gyro = Robot.oi.gyro;
+
     public JoystickDrive() {
         //Komuta gereken altsistemlerin çalıştırılması.
     	requires(Robot.driveSystem);

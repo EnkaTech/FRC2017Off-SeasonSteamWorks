@@ -42,7 +42,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		driveSystem = new DriveSystem();
 		moveGripper = new MoveGripper();
-		
 		//FIRST'ün hazır kamera çıktı alma kodu. Düzenlenmedi.
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -61,6 +60,7 @@ public class Robot extends IterativeRobot {
             }
         }).start();
 		SmartDashboard.putData("Auto mode", chooser);
+		Robot.oi.gyro.calibrate();
 	}
 
 	//Robotun komutları durdurmadan çalıştırdığı son kod
@@ -88,6 +88,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+		Robot.oi.gyro.reset();
+	
 		//DOKUNMAYIN. OTONOM ÇALIŞILMADI.
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -105,6 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		driveSystem.GyroDrive(Robot.oi.gyro);
 	}
 	
 	//Teleoperatör başlatıldığında başlayacak olan kod.
