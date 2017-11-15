@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup {
 
     public AutonomousCommand() {
-        addSequential(new Gyroverse(5));
+        addSequential(new Gyroverse(5,true));
         addSequential(new TimedGrip(0.5));
+        addSequential(new Gyroverse(3,false));
         addSequential(new GyroTurn(45));
+        addSequential(new Gyroverse(3,true));
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

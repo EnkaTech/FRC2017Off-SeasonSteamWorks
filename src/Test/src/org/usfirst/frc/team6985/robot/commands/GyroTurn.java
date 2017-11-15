@@ -27,7 +27,7 @@ double angle;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Math.abs(angle-Robot.oi.gyro.getAngle())<1;
     }
 
     // Called once after isFinished returns true

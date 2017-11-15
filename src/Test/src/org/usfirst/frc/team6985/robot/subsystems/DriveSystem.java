@@ -41,20 +41,25 @@ public class DriveSystem extends Subsystem {
 		drive(-joy.getY(),-joy.getRawAxis(5));
 }
 	
-	public void GyroDrive(ADXRS450_Gyro gyro) {
+	public void GyroDrive(ADXRS450_Gyro gyro,boolean x) {
 		double angle = gyro.getAngle();
-		drive(0.4-angle*Kp,0.4+angle*Kp);
+		if(x) {
+			drive((0.4-angle*Kp),(0.4+angle*Kp));
+		}
+		else {
+			drive(-(angle*Kp+0.4),-(0.4-angle*Kp));
+		}
 		Timer.delay(0.0004);
 	}
 	public void GyroTurn(ADXRS450_Gyro gyro,double turn) {
 		double angle = gyro.getAngle();
 		double power=(turn-angle)*Kp*8;
-		if (power>=0.45)
+		if (power>=0.38)
 		{
-			power=0.45;
+			power=0.38;
 		}
-		else if(power <= -0.45) {
-			power= -0.45;
+		else if(power <= -0.38) {
+			power= -0.38;
 		}
 		Timer.delay(0.0004);
 		drive(power,-power);
