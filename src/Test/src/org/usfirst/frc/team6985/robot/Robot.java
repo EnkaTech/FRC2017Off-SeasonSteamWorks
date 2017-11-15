@@ -6,6 +6,7 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -14,10 +15,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team6985.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team6985.robot.commands.Climb;
+import org.usfirst.frc.team6985.robot.commands.Gyroverse;
 import org.usfirst.frc.team6985.robot.subsystems.Climber;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team6985.robot.subsystems.GripGear;
 import org.usfirst.frc.team6985.robot.subsystems.MoveGripper;
+
+
 
 public class Robot extends IterativeRobot {
 	
@@ -27,7 +33,7 @@ public class Robot extends IterativeRobot {
 	public static MoveGripper moveGripper;
 	public static GripGear gripGear;
 	public static Climber climber;
-
+	final int a = 1;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -88,8 +94,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-		Robot.oi.gyro.reset();
-	
+		new AutonomousCommand().start();
 		//DOKUNMAYIN. OTONOM ÇALIŞILMADI.
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -99,15 +104,13 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 
 	//Bu fonksiyon otonom sırasında periyodik olarak çalışır. Modem bağlantısına göre yaklaşık 20 ms'te bir çalışır. (Koddan gözlendi.)
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		driveSystem.GyroDrive(Robot.oi.gyro);
+		SmartDashboard.putNumber("Gyro", Robot.oi.gyro.getAngle());
 	}
 	
 	//Teleoperatör başlatıldığında başlayacak olan kod.

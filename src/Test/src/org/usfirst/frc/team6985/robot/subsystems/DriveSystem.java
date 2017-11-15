@@ -24,6 +24,7 @@ public class DriveSystem extends Subsystem {
 	//Sürüş sisteminin kendi kütüphanemizden çekilmesi.
 	private RobotDrive driveSystem = new RobotDrive(frontLeftMotor,rearLeftMotor,frontRightMotor,rearRightMotor);
 	double Kp = 0.02;
+	double maxOutput=0.5;
 	@Override
     public void initDefaultCommand() {
     	//Alt sistem için ana komutun belirlenmesi. Alt sistemlerin birden fazla komutu olabilse de bir ana komut olmak zorunda.
@@ -42,10 +43,23 @@ public class DriveSystem extends Subsystem {
 	
 	public void GyroDrive(ADXRS450_Gyro gyro) {
 		double angle = gyro.getAngle();
-		
-		drive(0.7-angle*Kp,0.7+angle*Kp);
+		drive(0.4-angle*Kp,0.4+angle*Kp);
 		Timer.delay(0.0004);
+	}
+	public void GyroTurn(ADXRS450_Gyro gyro,double turn) {
+		double angle = gyro.getAngle();
+		double power=(turn-angle)*Kp*8;
+		if (power>=0.45)
+		{
+			power=0.45;
+		}
+		else if(power <= -0.45) {
+			power= -0.45;
+		}
+		Timer.delay(0.0004);
+		drive(power,-power);
 		
-	}}
+	}
+}
 
 
