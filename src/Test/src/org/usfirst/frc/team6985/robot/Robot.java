@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		//Komutların işlevselleştirilmesi. 
-		//TODO Kontrol edilecek.
+		//TODO İttifak renkleri ve sayılarına göre düzenlemeler yapılacak.
 		climber = new Climber();
 		gripGear = new GripGear();
 		oi = new OI();
