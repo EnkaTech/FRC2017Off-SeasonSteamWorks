@@ -6,9 +6,11 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,14 +32,19 @@ public class Robot extends IterativeRobot {
 	public static MoveGripper moveGripper;
 	public static GripGear gripGear;
 	public static Climber climber;
+	NetworkTable table;
 	final int a = 1;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	
+	
+	public Robot() {
+		table = NetworkTable.getTable("GRIP/reflectiveTape");
+	}
 	//Robot başladığında çalışacak kod
 	@Override
 	public void robotInit() {
-		
+
 		//Komutların işlevselleştirilmesi. 
 		//TODO İttifak renkleri ve sayılarına göre düzenlemeler yapılacak.
 		climber = new Climber();
@@ -45,6 +52,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		driveSystem = new DriveSystem();
 		moveGripper = new MoveGripper();
+		
+		
+	
 		//FIRST'ün hazır kamera çıktı alma kodu. Düzenlenmedi.
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -64,6 +74,16 @@ public class Robot extends IterativeRobot {
         }).start();
 		SmartDashboard.putData("Auto mode", chooser);
 		Robot.oi.gyro.calibrate();
+		//DENEME
+		double[] defaultValue = new double[0];
+		while(true) {
+			double[] xCoordinates = table.getNumberArray("x",defaultValue);
+			for (double x: xCoordinates) {
+				System.out.println(x + " ");			
+			}
+			System.out.println();
+			Timer.delay(1);
+		}
 	}
 
 	//Robotun komutları durdurmadan çalıştırdığı son kod
