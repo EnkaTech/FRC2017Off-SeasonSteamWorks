@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team6985.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team6985.robot.grip.PipelineDrive;
 import org.usfirst.frc.team6985.robot.subsystems.Climber;
 import org.usfirst.frc.team6985.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team6985.robot.subsystems.GripGear;
@@ -32,6 +33,9 @@ public class Robot extends IterativeRobot {
 	public static MoveGripper moveGripper;
 	public static GripGear gripGear;
 	public static Climber climber;
+	public static PipelineDrive pipelineDrive;
+	public static Mat source;
+	public static Mat output;
 	NetworkTable table;
 	final int a = 1;
 	Command autonomousCommand;
@@ -52,8 +56,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		driveSystem = new DriveSystem();
 		moveGripper = new MoveGripper();
-		
-		
+		pipelineDrive=new PipelineDrive();
 	
 		//FIRST'ün hazır kamera çıktı alma kodu. Düzenlenmedi.
 		new Thread(() -> {
@@ -63,8 +66,8 @@ public class Robot extends IterativeRobot {
             CvSink cvSink = CameraServer.getInstance().getVideo();
             CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
             
-            Mat source = new Mat();
-            Mat output = new Mat();
+            source = new Mat();
+            output = new Mat();
             
             while(!Thread.interrupted()) {
                 cvSink.grabFrame(source);
@@ -74,16 +77,6 @@ public class Robot extends IterativeRobot {
         }).start();
 		SmartDashboard.putData("Auto mode", chooser);
 		Robot.oi.gyro.calibrate();
-		//DENEME
-		double[] defaultValue = new double[0];
-		while(true) {
-			double[] xCoordinates = table.getNumberArray("x",defaultValue);
-			for (double x: xCoordinates) {
-				System.out.println(x + " ");			
-			}
-			System.out.println();
-			Timer.delay(1);
-		}
 	}
 
 	//Robotun komutları durdurmadan çalıştırdığı son kod
@@ -128,6 +121,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Gyro", Robot.oi.gyro.getAngle());
+		pipelineDrive.process(output);
 	}
 	
 	//Teleoperatör başlatıldığında başlayacak olan kod.

@@ -11,14 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 //Tırmanma mekanizması komutu.
 public class Climb extends Command {
 double speed;
-
     public Climb(double x) {
     	this.speed=x;
     	requires(Robot.climber);
     }
     
     protected void initialize() {
-    	
     }
 
     protected void execute() {

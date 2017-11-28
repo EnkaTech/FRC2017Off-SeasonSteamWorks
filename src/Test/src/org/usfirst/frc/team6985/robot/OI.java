@@ -21,7 +21,7 @@ public class OI {
 		//Butonlara basılmasına göre fonkisyon çalıştırılması.
 		buttonB.whileHeld(new Gear(1));
 		buttonA.whileHeld(new Gear(-1));
-		buttonX.whileHeld(new Climb(-1));
+		buttonX.toggleWhenPressed(new Climb(-1));
 	}
 
 }
