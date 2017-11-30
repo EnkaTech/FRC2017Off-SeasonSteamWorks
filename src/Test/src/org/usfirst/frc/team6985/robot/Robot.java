@@ -61,10 +61,10 @@ public class Robot extends IterativeRobot {
 		//FIRST'ün hazır kamera çıktı alma kodu. Düzenlenmedi.
 		new Thread(() -> {
             UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-            camera.setResolution(640, 480);
+            camera.setResolution(50,50);
             
             CvSink cvSink = CameraServer.getInstance().getVideo();
-            CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+            CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 50, 50);
             
             source = new Mat();
             output = new Mat();
@@ -121,7 +121,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Gyro", Robot.oi.gyro.getAngle());
-		pipelineDrive.process(output);
+	
 	}
 	
 	//Teleoperatör başlatıldığında başlayacak olan kod.

@@ -5,6 +5,7 @@ import org.usfirst.frc.team6985.robot.commands.Gear;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class OI {
 
@@ -16,6 +17,7 @@ public class OI {
 	public JoystickButton powerup = new JoystickButton(joy, 6);
 	public JoystickButton increaseSensitivity = new JoystickButton(joy, 5);
 	public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+	public DriverStation ds = DriverStation.getInstance();
 	public OI() 
 	{
 		//Butonlara basılmasına göre fonkisyon çalıştırılması.
