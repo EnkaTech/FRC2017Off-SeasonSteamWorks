@@ -1,7 +1,6 @@
 package org.usfirst.frc.team6985.robot.commands;
 
 import org.usfirst.frc.team6985.robot.Robot;
-import org.usfirst.frc.team6985.robot.subsystems.MoveGripper;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -17,22 +16,32 @@ public class AutonomousCommand extends CommandGroup {
     	case 2:
     	
         addSequential(new Gyroverse(7.75,true));
+        addSequential(new RemGripper(0.3));
         addSequential(new TimedGrip(0.5));
+        addSequential(new Gyroverse(3, false));
+        addSequential(new GyroTurn(45));
+        addSequential(new Gyroverse(4,false));
+        
+        
         break;
     	case 1:
  
     	addSequential(new Gyroverse(7.1,true));
     	addSequential(new GyroTurn(60));
     	addSequential(new Gyroverse(5,true));
-    	addSequential(new MoveGripper.lift(0.5), 0.4);
+    	addSequential(new RemGripper(0.3));
     	addSequential(new TimedGrip(0.5));	
+    	
     	break;
     	case 3:
     		
-    	addSequential(new Gyroverse(6.0,true));
-        addSequential(new GyroTurn(-30));
-        addSequential(new Gyroverse(1.0,true));
+    	addSequential(new Gyroverse(7.1,true));
+        addSequential(new GyroTurn(-60));
+        addSequential(new Gyroverse(5,true));
+        addSequential(new RemGripper(0.3));
         addSequential(new TimedGrip(0.5));	
+        
+        
     	break;
         
     	}
