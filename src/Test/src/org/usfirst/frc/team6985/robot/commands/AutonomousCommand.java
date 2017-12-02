@@ -15,32 +15,37 @@ public class AutonomousCommand extends CommandGroup {
     	
     	case 2:
     	
-        addSequential(new Gyroverse(7.75,true));
-        addSequential(new RemGripper(0.3));
+        addSequential(new Gyroverse(3.3,true));
+        addSequential(new RemGripper(0.1));
         addSequential(new TimedGrip(0.5));
-        addSequential(new Gyroverse(3, false));
+        addSequential(new Gyroverse(1.5, false));
         addSequential(new GyroTurn(45));
-        addSequential(new Gyroverse(4,false));
+        addSequential(new Gyroverse(3, true));
         
         
         break;
     	case 1:
  
-    	addSequential(new Gyroverse(7.1,true));
+    	addSequential(new Gyroverse(3.9,true));
     	addSequential(new GyroTurn(60));
-    	addSequential(new Gyroverse(5,true));
-    	addSequential(new RemGripper(0.3));
+    	addSequential(new Gyroverse(2.8,true));
+    	addSequential(new RemGripper(0.15));
     	addSequential(new TimedGrip(0.5));	
+    	addSequential(new Gyroverse(1.5,false));
+    	addSequential(new GyroTurn(-60));
+    	addSequential(new Gyroverse(3,true));
     	
     	break;
     	case 3:
     		
-    	addSequential(new Gyroverse(7.1,true));
-        addSequential(new GyroTurn(-60));
-        addSequential(new Gyroverse(5,true));
-        addSequential(new RemGripper(0.3));
-        addSequential(new TimedGrip(0.5));	
-        
+    		addSequential(new Gyroverse(3.9,true));
+        	addSequential(new GyroTurn(-60));
+        	addSequential(new Gyroverse(2.8,true));
+        	addSequential(new RemGripper(0.1));
+        	addSequential(new TimedGrip(0.5));	
+        	addSequential(new Gyroverse(1.5,false));
+        	addSequential(new GyroTurn(60));
+        	addSequential(new Gyroverse(3,true));        
         
     	break;
         

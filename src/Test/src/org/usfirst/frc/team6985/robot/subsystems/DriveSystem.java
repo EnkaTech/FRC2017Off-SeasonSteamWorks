@@ -44,10 +44,10 @@ public class DriveSystem extends Subsystem {
 	public void GyroDrive(ADXRS450_Gyro gyro,boolean x) {
 		double angle = gyro.getAngle();
 		if(x) {
-			drive((0.4-angle*Kp),(0.4+angle*Kp));
+			drive((0.5-angle*Kp),(0.5+angle*Kp));
 		}
 		else {
-			drive(-(angle*Kp+0.4),-(0.4-angle*Kp));
+			drive(-(angle*Kp+0.5),-(0.5-angle*Kp));
 		}
 		Timer.delay(0.0004);
 	}
